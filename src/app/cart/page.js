@@ -6,18 +6,21 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from 'next/navigation'
+import Navbar from "../Components/navbar";
 
 
 export default function Cart() {
 const searchParams = useSearchParams();
-const history = useRouter();
+// const history = useRouter();
 
   const [open, setOpen] = useState(true);
  const cart = searchParams.get('cart') ?  searchParams.get('cart'): []
 
- console.log(history)
+//  console.log(history)
   console.log(cart)
   return (<>
+    <Navbar cart={JSON.parse(cart)}/>
+    {/* <ProductList cart={cart} setCart={setCart}/> */}
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
